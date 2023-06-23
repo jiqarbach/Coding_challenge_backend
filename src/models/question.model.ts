@@ -29,10 +29,6 @@ Question.init(
         type: DataTypes.STRING,
         allowNull: false,
       },
-      userId: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-      },
     },
     {
       sequelize,

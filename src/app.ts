@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-var bodyParser = require('body-parser')
+let bodyParser = require('body-parser')
+let cors = require('cors')
 // import authRoutes from './routes/auth.route'
 
 // Load environment variables from .env file
@@ -8,6 +9,11 @@ dotenv.config();
 
 // Create Express application
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:3001',
+}))
+
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -21,6 +27,10 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/auth', require('./routes/auth.route'))
+app.use('/questions', require('./routes/questions.route'))
+app.use('/answers', require('./routes/answers.routes'))
+
+
 
 // Start the server
 const port = process.env.PORT || 3000;

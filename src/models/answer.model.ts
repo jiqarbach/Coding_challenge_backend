@@ -21,14 +21,6 @@ Answer.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        userId: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-        },
-        questionId: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            allowNull: false,
-        },
     },
     {
         sequelize,
