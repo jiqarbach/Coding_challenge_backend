@@ -3,44 +3,51 @@ import sequelize from '../database';
 import User from './user.model';
 
 class Question extends Model {
-    public questionId!: number;
-    public title!: string;
-    public content!: string;
-    public location!: string;
-    public userId!: number;
+  public questionId!: number;
+  public title!: string;
+  public content!: string;
+  public lat!: string;
+  public lng!: string;
+  public userId!: number;
 }
 
 Question.init(
-    {
-      questionId: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      content: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+  {
+    questionId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    {
-      sequelize,
-      modelName: 'questions',
-      tableName: 'questions',
-      timestamps: true,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    lat: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 0,
+    },
+    lng: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 0,
     }
-  );
-  
-  Question.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+  },
+  {
+    sequelize,
+    modelName: 'questions',
+    tableName: 'questions',
+    timestamps: true,
+  }
+);
 
-  Question.sync();
+Question.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
-  export default Question;
-  
+Question.sync();
+
+export default Question;
+

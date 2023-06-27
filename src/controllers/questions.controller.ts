@@ -7,14 +7,16 @@ export async function addQuestion(req: Request, res: Response) {
         const {
             title,
             content,
-            location,
+            lat,
+            lng,
             userId
         } = req.body;
 
         const newQuestion = await Question.create({
             title,
             content,
-            location,
+            lat,
+            lng,
             userId
         });
 
@@ -24,7 +26,7 @@ export async function addQuestion(req: Request, res: Response) {
         res.status(201).send('Question added succesfully');
     }
     catch (error) {
-        res.status(500).json({ error: 'Unable to add question' });
+        res.status(500).json({ error });
     }
 }
 

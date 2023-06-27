@@ -34,7 +34,7 @@ export async function register(req: Request, res: Response) {
     const refreshToken = generateRefreshToken(newUser.userId);
 
     // Return the access token and refresh token
-    res.json({ accessToken, refreshToken });
+    res.json({ newUser, accessToken, refreshToken });
   } catch (error) {
     res.status(500).json({ error: 'Unable to register user' });
   }
@@ -63,7 +63,7 @@ export async function login(req: Request, res: Response) {
     const refreshToken = generateRefreshToken(user.userId);
 
     // Return the access token and refresh token
-    res.json({ accessToken, refreshToken });
+    res.json({user, accessToken, refreshToken });
   } catch (error) {
     res.status(500).json({ error: 'Unable to login' });
   }
